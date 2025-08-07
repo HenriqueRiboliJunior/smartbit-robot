@@ -16,6 +16,7 @@ rerun.log
 # Ignorar diretórios de dados de testes
 results/
 tests/results/
+logs/
 
 # Ignorar arquivos e diretórios de IDEs
 .idea/

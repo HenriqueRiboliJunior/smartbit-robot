@@ -15,23 +15,10 @@ Submit signup form
 
     Fill Text    id=name        ${account}[name]
     Fill Text    id=email       ${account}[email]
-    Fill Text    id=cpf    ${account}[cpf]
+    Fill Text    id=cpf         ${account}[cpf]
 
     # os dois locators fazem o mesmo serviço mas o segundo é mais clean
     #Click       xpath=//button[text()="Cadastrar"]
     Click        css=button >> text=Cadastrar
 
 
-Notice should be
-    [Arguments]        ${target}
-
-    ${element}    Set Variable    css=form .notice
-
-    # aguardar até que um elemento esteja visivel ou oculto entre outros
-    Wait For Elements State
-    ...    ${element}
-    ...    visible    5
-    
-    Get Text    
-    ...    ${element}    
-    ...    equal    ${target}
