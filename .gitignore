@@ -1,0 +1,32 @@
+# Ignorar arquivos e diretórios de build/cache
+__pycache__/
+.pytest_cache/
+.tox/
+dist/
+build/
+*.egg-info/
+
+# Ignorar logs do Robot Framework
+output.xml
+report.html
+log.html
+rerun.log
+*.log
+
+# Ignorar diretórios de dados de testes
+results/
+tests/results/
+
+# Ignorar arquivos e diretórios de IDEs
+.idea/
+.vscode/
+*.swp
+*~
+.DS_Store
+
+# Ignorar variáveis de ambiente e arquivos de configuração sensíveis
+.env
+.venv/
+venv/
+logs/browser/screenshot/robotframework-browser-screenshot-1.png
+logs/playwright-log.txt
