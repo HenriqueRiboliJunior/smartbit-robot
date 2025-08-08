@@ -8,15 +8,23 @@ Test Teardown        Take Screenshot
 
 *** Test Cases ***
 Deve iniciar o cadastro do cliente
-     
-    ${account}    Get Fake Account
+
+    # Metodo para gerar massa de dados fake
+    #${account}    Get Fake Account
+
+    ${account}    Create Dictionary    
+    ...        name=Henrique Junior
+    ...        email=henrique@msn.com
+    ...        cpf=28381238072
+    
+    Delete Account By Email    ${account}[email]
 
     Submit signup form    ${account}
     Verify welcome message
 
 Tentativa de pré-cadastro
     [Template]        Attempt signup
-    ${EMPTY}           teste@gmail.com      09165407075     Por favor informe o seu nome completo
+    ${EMPTY}           teste@gmail.com       09165407075    Por favor informe o seu nome completo
     Henrique testes    ${EMPTY}              09165407075    Por favor, informe o seu melhor e-mail
     Henrique testes    henrique@gmail.com    ${EMPTY}       Por favor, informe o seu CPF
     Henrique testes    henrique*gmail.com    09165407075    Oops! O email informado é inválido
