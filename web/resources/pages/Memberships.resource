@@ -1,45 +1,18 @@
 *** Settings ***
-Documentation        Suite de testes de adesões de planos
+Documentation        Ações e elementos da página de Matrículas
 
-Resource        ../resources/Base.resource
-
-
-Test Setup           Start session
-Test Teardown        Take Screenshot
-
-*** Test Cases ***
-Deve poder realizar uma nova adesão
+Library        Browser
 
 
-    ${data}    Get Json fixture        memberships    create   
-
-
-    Delete Account By Email       ${data}[account][email]
-    Insert Account                ${data}[account]
-    
-    
-    Go to login page
-    Submit login form    sac@smartbit.com    pwd123
-    User is logged in    sac@smartbit.com
-
-    Go to memberships
+*** Keywords ***
+Create new membership
+    [Arguments]        ${data}
     Go to memberships form
     Select account        ${data}[account][name]    ${data}[account][cpf]
-    Select plan           ${data}[plan]
+    Select plan           ${data}[plan][name]
     Fill payment          ${data}[credit_card]
 
     Click    css=button[type=submit] >> text=Cadastrar
-    
-    Toast should be    Matrícula cadastrada com sucesso.
-
-*** Keywords ***    
-Go to memberships
-
-    Click    css=a[href="/memberships"]
-
-    Wait For Elements State    css=h1 >> text=Matrículas    
-    ...    visible    5  
-  
 
 Go to memberships form
     
@@ -70,3 +43,33 @@ Fill payment
     Fill Text    css=input[name=card_month]             ${card}[month]
     Fill Text    css=input[name=card_year]              ${card}[year]
     Fill Text    css=input[name=card_cvv]               ${card}[cvv]
+
+Search by name
+   [Arguments]        ${name}
+
+    Fill Text    css=input[placeholder^=Busque]    ${name}
+
+    Wait For Elements State    css=strong >> text=total: 1    
+    ...    visible    5 
+    
+Should filter by name
+    [Arguments]        ${name}
+
+    Wait For Elements State    css=table tbody tr >> text=${name}    
+    ...    visible    5    
+   
+
+
+
+Request removal
+    [Arguments]        ${name}    
+
+    Click    xpath=//td[text()="${name}"]/..//button
+
+
+Membership should not be visible
+    [Arguments]        ${name}
+
+    Wait For Elements State    css=table tbody tr >> text=${name}    
+    ...    detached    5
+
