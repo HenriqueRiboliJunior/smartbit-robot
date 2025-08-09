@@ -1,10 +1,14 @@
 import psycopg2
+import os
+from dotenv import load_dotenv
 
-db_conn = """
-        host='localhost'
-        dbname='smartbit'
-        user='postgres'
-        password='QAx@123'
+load_dotenv()
+
+db_conn = f"""
+        host='{os.getenv('DB_HOST')}'
+        dbname='{os.getenv('DB_NAME')}'
+        user='{os.getenv('DB_USER')}'
+        password='{os.getenv('DB_PASS')}'
 """
 
 def execute(query):

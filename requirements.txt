@@ -4,5 +4,6 @@ psycopg2==2.9.10
 robotframework==7.0
 robotframework-browser==19.7.0
 robotframework-jsonlibrary==0.5
+python-dotenv==1.1.1
 
 
