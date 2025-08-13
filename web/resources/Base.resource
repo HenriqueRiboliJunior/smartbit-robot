@@ -31,7 +31,8 @@ ${ADMIN_PASS}         pwd123
 
 *** Keywords ***
 Start session
-    New Browser    browser=${BROWSER}    headless=${HEADLESS}    
+    New Browser    browser=${BROWSER}    headless=${HEADLESS}
+    New Context    viewport={'width': 1480, 'height': 720}
     New Page    ${BASE_URL}    
 
 
