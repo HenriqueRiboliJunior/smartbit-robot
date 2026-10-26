@@ -1,0 +1,7 @@
+Faker==40.15.0
+psycopg2-binary==2.9.12
+robotframework==7.4.2
+robotframework-appiumlibrary==3.2.1
+robotframework-browser==19.15.0
+robotframework-jsonlibrary==0.5
+robotframework-requests==0.9.7
