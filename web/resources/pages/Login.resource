@@ -1,13 +1,17 @@
 *** Settings ***
 Documentation        Ações e elementos da página login
 
+
 Library        Browser
+
+Variables      ../Env.py
+
 
 *** Keywords ***
 
 Go to login page
 
-    Go To    http://localhost:3000/login
+    Go To    ${BASE_URL}/login
     
 
 Submit login form
